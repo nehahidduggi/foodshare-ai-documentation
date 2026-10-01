@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react'
 import P from '../data/project.json'
+
 export const NAV = [['overview','Overview'],['problem','Problem'],['solution','Solution'],['how','How It Works'],['ai','AI & ML'],['users','Users & Roles'],['architecture','Architecture'],['stack','Technology Stack'],['database','Database'],['security','Security'],['requirements','Requirements'],['rules','Business Rules'],['mvp','MVP'],['testing','Testing'],['roadmap','Roadmap'],['future','Future'],['impact','Impact'],['glossary','Glossary'],['references','References']]
-export const Logo = ({ s = 30 }) => (<img src="/icons/logo.svg" width={s} height={s} alt="FoodShare AI logo" />)
+
+export const Logo = () => (
+  <span className="font-display font-bold text-white">
+    FoodShare AI
+  </span>
+)
 
 export function Progress() {
   const [p, setP] = useState(0)
@@ -14,7 +20,6 @@ export function Navbar({ open, setOpen }) {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-navy-950/75 backdrop-blur">
       <div className="flex h-16 items-center gap-3 px-4 lg:pl-[17rem]">
         <button className="btn border border-white/15 px-3 lg:hidden" aria-label="Toggle navigation" aria-expanded={open} onClick={() => setOpen(!open)}>☰</button>
-        <a href="#overview" className="flex items-center gap-2 font-display font-bold text-white lg:hidden"><Logo s={26} />FoodShare AI</a>
         <nav className="ml-auto hidden items-center gap-6 text-sm md:flex" aria-label="Primary">
           {[['how','Documentation'],['architecture','Architecture'],['ai','AI/ML'],['impact','Impact']].map(([i, l]) => <a key={i} href={'#' + i} className="text-slate-300 hover:text-leaf">{l}</a>)}
           <a href={P.github} target="_blank" rel="noreferrer" className="rounded-lg border border-white/15 px-3 py-1.5 hover:border-sky">GitHub</a>
@@ -31,7 +36,7 @@ export function Sidebar({ open, setOpen, active }) {
   return (<>
     {open && <div className="fixed inset-0 z-40 bg-black/60 lg:hidden" onClick={() => setOpen(false)} />}
     <aside aria-label="Documentation navigation" className={`fixed inset-y-0 left-0 z-50 w-64 overflow-y-auto border-r border-white/10 bg-navy-900 p-4 transition-transform lg:translate-x-0 ${open ? '' : '-translate-x-full'}`}>
-      <a href="#overview" className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-white"><Logo />FoodShare AI</a>
+      <a href="#overview" className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-white"><Logo /></a>
       <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search docs…" aria-label="Search documentation" className="mb-3 w-full rounded-lg border border-white/15 bg-navy-950 px-3 py-2 text-sm" />
       <nav>{items.map(([id, l]) => (
         <a key={id} href={'#' + id} onClick={() => setOpen(false)} aria-current={active === id ? 'true' : undefined}
