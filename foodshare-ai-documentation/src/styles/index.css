@@ -1,0 +1,24 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+body{background:#060d1f;color:#dbe5f5;overflow-x:hidden}
+:focus-visible{outline:2px solid #4fd8e8;outline-offset:2px}
+@layer components{
+ .card{@apply rounded-2xl border border-white/10 bg-navy-800/60 p-5 shadow-lg shadow-black/20 transition duration-200 hover:-translate-y-0.5 hover:border-leaf/40}
+ .h2{@apply font-display text-3xl sm:text-4xl font-bold text-white tracking-tight}
+ .chip{@apply inline-block rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-sky}
+ .btn{@apply inline-flex min-h-[44px] items-center justify-center rounded-xl px-5 py-2.5 font-semibold transition}
+}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+@keyframes dash{to{stroke-dashoffset:-24}}
+.flow{stroke-dasharray:6 6;animation:dash 1.2s linear infinite}
+@keyframes draw{to{stroke-dashoffset:0}}
+.draw{stroke-dasharray:1000;stroke-dashoffset:1000}
+.in .draw,.draw.in{animation:draw 2.4s ease forwards}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.bob{animation:bob 4s ease-in-out infinite}
+@keyframes scan{0%,100%{transform:translateY(0)}50%{transform:translateY(70px)}}
+.scan{animation:scan 2.6s ease-in-out infinite}
+@keyframes rise{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.rise{transform-origin:bottom;animation:rise 1.2s ease backwards}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}.draw{stroke-dashoffset:0}}
